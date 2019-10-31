@@ -6,8 +6,8 @@ class Map:
             #for elt in temp:
             #    self.map_list.append(elt.rstrip()
         self.map_str = "".join(self.map_list)
-        self.x_max = len(self.map_list[0]) - 1
-        self.y_max = len(self.map_list)
+        self.x_max = len(self.map_list[0]) - 2
+        self.y_max = len(self.map_list)-1
 
     def display_map(self):
         print(self.map_str)
