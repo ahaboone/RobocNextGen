@@ -9,5 +9,8 @@ class Map:
         self.x_max = len(self.map_list[0]) - 2
         self.y_max = len(self.map_list)-1
 
+    def map_str(self):
+        return("".join(self.map_list))
+
     def display_map(self):
         print(self.map_str)
