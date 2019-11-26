@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6c81acce-84fb-4347-a183-080a97af55a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/play_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/play_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/play_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/play_server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
