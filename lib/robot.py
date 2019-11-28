@@ -2,22 +2,24 @@ import random
 import math
 
 class Robot:
-    def __init__(self, robot_string, map):
+    def __init__(self, robot_string, my_map):
         self.string = robot_string
-        self.on_map = map.name
+        self.on_map = my_map.name
         self.possible_positions = [" ",".","U"]
-        self.position = self.robot_init_position(map)
+        self.position = self.robot_init_position(my_map)
+        my_map.robot_on_map[self.position[1] * (my_map.x_max + 2) + self.position[0]] = self.string
 
-    def robot_init_position(self, map):
+    def robot_init_position(self, my_map):
         initial_position_nok = True
         while initial_position_nok:
-            x = random.randint(0, map.x_max)
-            y = random.randint(0, map.y_max)
+            x = random.randint(0, my_map.x_max)
+            y = random.randint(0, my_map.y_max)
             # print(self.x, self.y)
             # print(map.map_list[self.y][self.x])
-            if map.map_list[y][x] in self.possible_positions and map.map_list[y][x] != "U":
+            if my_map.map_list[y][x] in self.possible_positions and my_map.map_list[y][x] != "U":
                 initial_position_nok = False
         return [x, y]
+
 
     def check_robot_movement(self, map, position):
         sign = lambda x: (1, -1)[x < 0]
@@ -69,7 +71,7 @@ class Robot:
             steps = int(movement[1:])
         return direction, steps
 
-    def move_robot(self, map, mvmt):
+    def move_robot(self, my_map, mvmt):
         victory = False
         direction, steps = self.parse_move(mvmt)
         y = self.position[1]
@@ -83,12 +85,17 @@ class Robot:
         elif direction.lower() == "o":
             x -= steps
         new_position = (x,y)
-        if self.check_robot_movement(map, new_position):
+        if self.check_robot_movement(my_map, new_position):
             # self.position[0] = x
             # self.position[1] = y
+            my_map.robot_on_map[self.position[1] * (my_map.x_max + 2) + self.position[0]] \
+                = my_map.map_list[self.position[1]][self.position[0]]
+
             self.position = new_position
-            if map.map_list[new_position[1]][new_position[0]]== "U":
+            my_map.robot_on_map[new_position[1] * (my_map.x_max + 2) + new_position[0]] = self.string
+            if my_map.map_list[new_position[1]][new_position[0]] == "U":
                 victory = True
+
         else:
             print("Ce mouvement est impossible.")
         return victory
