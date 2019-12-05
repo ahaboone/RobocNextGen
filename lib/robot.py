@@ -35,8 +35,9 @@ class Robot:
             for i in range(1, abs(position[0] - self.position[0])+1):
                 # if map.map_str[(map.x_max+2) * (position[1]) + sign(self.position[0] - position[0]) *i]
                 # not in self.possible_positions:
-                if map.map_list[self.position[1]][self.position[0]+sign(position[0] - self.position[0])*i] not in self.possible_positions:
-                    # print("mouvement impossible")
+                # if map.map_list[self.position[1]][self.position[0] + sign(position[0] - self.position[0]) *i ] not in self.possible_positions:
+                if map.robot_on_map[self.position[1] * (map.x_max + 2) + self.position[0] + sign(position[0] - self.position[0]) * i] \
+                        not in self.possible_positions:
                     movement_possible = False
                     break
 
@@ -44,8 +45,9 @@ class Robot:
             for i in range(1, abs(position[1] -  self.position[1])+1):
                 # if map.map_str[(map.x_max+2) * (self.position[1] + sign(position[1] - self.position[1]) * i) +
                 # self.position[0]] not in self.possible_positions:
-                if map.map_list[self.position[1]+ sign(position[1] - self.position[1]) * i][self.position[0]] not in self.possible_positions:
-                    # print("mouvement impossible")
+                # if map.map_list[self.position[1]+ sign(position[1] - self.position[1]) * i][self.position[0]] not in self.possible_positions:
+                if map.robot_on_map[(self.position[1] + sign(position[1] - self.position[1]) * i) * (map.x_max+2) + self.position[0]] \
+                            not in self.possible_positions:
                     movement_possible = False
                     break
         return movement_possible

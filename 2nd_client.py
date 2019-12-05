@@ -34,7 +34,7 @@ while continue_game:
             print(" ######## Ending game. ########")
         print(recvd_txt)
 
-    data_2_send, wlist, xlist = select.select([sys.stdin], [], [], 0.5)
+    data_2_send, wlist, xlist = select.select([sys.stdin], [], [], 5)
     if len(data_2_send):
         cmd_to_send = sys.stdin.readline().rstrip('\n')
         client_socket.send(cmd_to_send.encode())
