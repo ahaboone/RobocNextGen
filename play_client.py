@@ -7,7 +7,7 @@ import select
 
 # Socket to communicate to server
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect(('localhost', 11112))
+client_socket.connect(('localhost', 11111))
 
 # Ask user to choose a string for his/her robot representation
 robot_str = input("Choose a letter to represent your Robot: ")
@@ -24,7 +24,7 @@ while continue_game:
         recvd_txt = client_socket.recv(1024).decode()
         if recvd_txt == "q" or recvd_txt == "Q":  # If received data ia q (sent by server to end game)
             continue_game = False
-            print(" ######## Ending game. ########")
+            print("######## Ending game. ########")
 
         if recvd_txt != "q" and recvd_txt != "Q": # If game not ended, print current map
             print(recvd_txt)
