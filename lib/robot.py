@@ -69,9 +69,24 @@ class Robot:
         direction = ""
         steps = 1
         direction = movement[0]
-        if len(movement) > 1:
-            steps = int(movement[1:])
+        if direction in ["m", "M", "p", "P"]:
+            steps = movement[1:]
+        else:
+            if len(movement) > 1:
+                steps = int(movement[1:])
+
         return direction, steps
+
+    def close_open_door(self, my_map, position):
+        direction, action = self.parse_move(mvmt)
+        if direction.lower() == "n":
+            my_map.clo
+        elif direction.lower() == "s":
+            y += steps
+        elif direction.lower() == "e":
+            x += steps
+        elif direction.lower() == "o":
+            x -= steps
 
     def move_robot(self, my_map, mvmt):
         victory = False
@@ -86,8 +101,24 @@ class Robot:
             x += steps
         elif direction.lower() == "o":
             x -= steps
-        new_position = (x,y)
-        if self.check_robot_movement(my_map, new_position):
+        elif direction.lower() in ["m", "p"]:
+            if steps.lower() == "n":
+                y -= 1
+            elif steps.lower() == "s":
+                y += 1
+            elif steps.lower() == "e":
+                x += 1
+            elif steps.lower() == "o":
+                x -= 1
+            if direction.lower() == "m":
+                if my_map.check_door((x, y)):
+                    my_map.close_open_door("c", (x, y))
+            elif direction.lower() == "p":
+                if my_map.check_wall((x, y)):
+                    my_map.close_open_door("o", (x, y))
+
+        new_position = (x, y)
+        if direction not in ["m", "p"] and self.check_robot_movement(my_map, new_position):
             # self.position[0] = x
             # self.position[1] = y
             my_map.robot_on_map[self.position[1] * (my_map.x_max + 2) + self.position[0]] \
@@ -99,7 +130,7 @@ class Robot:
                 victory = True
 
         else:
-            print("Ce mouvement est impossible.")
+            print("Cette commande est impossible.")
         return victory
 
     """ def update_robot_position(self, map, position):

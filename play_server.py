@@ -19,7 +19,7 @@ my_map = Map(chosen_map_name)
 # my_map_stream = pickle.dumps(my_map)
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind(('', 11111))
+server_socket.bind(('', 11112))
 server_socket.listen(5)
 
 start_game = False

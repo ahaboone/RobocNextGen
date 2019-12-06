@@ -13,7 +13,7 @@ from lib.robot import *
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-client_socket.connect(('localhost', 11111))
+client_socket.connect(('localhost', 11112))
 
 robot_str = input("Choose a letter to represent your Robot: ")
 client_socket.send(robot_str.encode())
@@ -32,6 +32,7 @@ while continue_game:
         if recvd_txt == "q" or recvd_txt == "Q":
             continue_game = False
             print(" ######## Ending game. ########")
+            break
         print(recvd_txt)
 
     data_2_send, wlist, xlist = select.select([sys.stdin], [], [], 0.5)
