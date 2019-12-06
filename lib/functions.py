@@ -20,5 +20,6 @@ def available_maps():
 
 
 def choose_map(available_maps):
+    """ Function to get input from user for choosing a map"""
     chosen_map = int(input("Veuillez choisir un numéro de carte: "))
     return available_maps[chosen_map]
