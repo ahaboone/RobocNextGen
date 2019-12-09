@@ -61,9 +61,10 @@ while continue_game:
     recvd_cmd = ""
     # Go through the list of clients, one by one, and ask for a command
     for connected_client in client_connections:
-        connected_client.send("########################## \nA votre tour! Entrez une commande:".encode())
+        connected_client.send("#################################################### \n"
+                              "A votre tour! Entrez une commande:".encode())
         recvd_cmd = connected_client.recv(1024).decode()
-        print("Received command <{}> from robtot {}".format(
+        print("Received command <{}> from robot {}".format(
             recvd_cmd, existing_robots[connected_client.getpeername()[1]].string))
         # Quit if q is entered
         if recvd_cmd == "q" or recvd_cmd == "Q":
@@ -74,7 +75,11 @@ while continue_game:
             break
         # If q is not entered, then move the robot according to the entered command.
         # The returned value is victory (bool) in case any client reaches the door
+        init_position = existing_robots[connected_client.getpeername()[1]].position
         victory = existing_robots[connected_client.getpeername()[1]].move_robot(my_map, recvd_cmd)
+        if init_position == existing_robots[connected_client.getpeername()[1]].position:
+            connected_client.send(b"Mouvement impossible, votre robot reste sur place. \n")
+
         # If one of the clients next position is the door
         if victory:
             # Stop the game
