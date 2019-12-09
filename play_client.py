@@ -31,7 +31,6 @@ def read_input(timeout=0.1):
                     user_input += chr.decode()
             if len(user_input) == 0 and (time.time() - start_time) > timeout:
                 break
-        print('')  # needed to move to next line
     else:
         user_input, wlist, xlist = select.select([sys.stdin], [], [], timeout)
     return user_input
