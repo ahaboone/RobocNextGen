@@ -58,7 +58,7 @@ while continue_game:
             print(cmd_to_send)
         else:
             cmd_to_send = sys.stdin.readline().rstrip('\n')
-            
+
         client_socket.send(cmd_to_send.encode())
 
 # Close connection when game is ended.
