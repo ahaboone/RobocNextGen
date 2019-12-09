@@ -55,9 +55,11 @@ while continue_game:
     if len(data_2_send):
         if os.name == "nt":
             cmd_to_send = data_2_send
-            client_socket.send(cmd_to_send.encode())
+            print(cmd_to_send)
         else:
             cmd_to_send = sys.stdin.readline().rstrip('\n')
-            client_socket.send(cmd_to_send.encode())
+            
+        client_socket.send(cmd_to_send.encode())
+
 # Close connection when game is ended.
 client_socket.close()
