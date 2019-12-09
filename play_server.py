@@ -78,7 +78,7 @@ while continue_game:
         init_position = existing_robots[connected_client.getpeername()[1]].position
         victory = existing_robots[connected_client.getpeername()[1]].move_robot(my_map, recvd_cmd)
         if init_position == existing_robots[connected_client.getpeername()[1]].position \
-                and recvd_cmd not in ["m", "M", "p", "P"]:
+                and recvd_cmd[0] not in ["m", "M", "p", "P"]:
             connected_client.send(b"Mouvement impossible, votre robot reste sur place. \n")
 
         # If one of the clients next position is the door
