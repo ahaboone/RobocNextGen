@@ -18,7 +18,7 @@ my_map = Map(chosen_map_name)
 
 # Create the socket that will handle communication with clients
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind(('', 11111))
+server_socket.bind(('', 11112))
 server_socket.listen(5)
 
 start_game = False  # Value will be used to wait for client connections
