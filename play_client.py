@@ -53,7 +53,11 @@ while continue_game:
     # data_2_send, wlist, xlist = select.select([sys.stdin], [], [], 0.5)
     data_2_send = read_input(0.5)
     if len(data_2_send):
-        cmd_to_send = sys.stdin.readline().rstrip('\n')
-        client_socket.send(cmd_to_send.encode())
+        if os.name == "nt":
+            cmd_to_send = data_2_send
+            client_socket.send(cmd_to_send.encode())
+        else:
+            cmd_to_send = sys.stdin.readline().rstrip('\n')
+            client_socket.send(cmd_to_send.encode())
 # Close connection when game is ended.
 client_socket.close()
