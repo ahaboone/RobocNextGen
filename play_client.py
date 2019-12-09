@@ -28,8 +28,8 @@ def read_input(timeout=0.1):
                 if ord(chr) == 13:  # enter_key
                     break
                 elif ord(chr) >= 32:  #space_char
-                    input += chr.decode()
-            if len(input) == 0 and (time.time() - start_time) > timeout:
+                    user_input += chr.decode()
+            if len(user_input) == 0 and (time.time() - start_time) > timeout:
                 break
         print('')  # needed to move to next line
     else:
